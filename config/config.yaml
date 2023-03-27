@@ -8,28 +8,29 @@ units: config/units.tsv
 
 ref:
   # Ensembl species name
-  species: homo_sapiens
+  species: mus_musculus
   # Ensembl release (make sure to take one where snpeff data is available, check 'snpEff databases' output)
   release: 100
   # Genome build
-  build: GRCh38
+  build: GRCm39
 
 trimming:
-  activate: False
+  activate: True
 
 pca:
   activate: True
   labels:
     # columns of sample sheet to use for PCA
     - condition
+    - source_name
 
 diffexp:
   # contrasts for the deseq2 results method
   contrasts:
-    A-vs-B:
-      - A
-      - B
-  model: ~condition
+    nine-vs-twentysix:
+      - nineMonth
+      - twentysixMonth
+  model: ~source_name + condition
 
 params:
   cutadapt-pe: ""
